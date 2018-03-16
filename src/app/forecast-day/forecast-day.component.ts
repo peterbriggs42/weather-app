@@ -7,7 +7,7 @@ import { ForecastService } from '../services/forecast.service';
   styleUrls: ['./forecast-day.component.css']
 })
 export class ForecastDayComponent implements OnInit {
-  @Input() day: Day;
+  @Input() day: any;
   constructor(private forecastService: ForecastService) { }
 
   ngOnInit() {
@@ -16,7 +16,6 @@ export class ForecastDayComponent implements OnInit {
   getWeatherIcon(code) {
     let codesMap = this.forecastService.getForecastCodes();
     let codeStr = codesMap[code];
-    console.log('codeStr: ' + codeStr);
     switch (codeStr) {
       case 'partly cloudy (day)':
         return 'wi wi-day-cloudy';

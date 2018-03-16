@@ -1,6 +1,6 @@
 <div>
   <div class="row mb-2">
-    <forecast-day *ngFor="let day of forecast"
+    <forecast-day *ngFor="let day of forecastObservable | async"
                   class="col-md-3"
                   [day]="day"></forecast-day>
   </div>

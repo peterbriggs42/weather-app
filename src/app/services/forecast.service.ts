@@ -1,11 +1,24 @@
 import { Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
+
+import { Subject, Observable } from 'rxjs/Rx';
+
 
 @Injectable()
 export class ForecastService {
 
-  constructor() { }
-  getForecast() {
-    return FORECAST;
+  constructor(private http: Http) { }
+
+  getForecastObservable(): Observable<any[]> {
+    return this.http.get(YAHOO_WEATHER_API_URL)
+      .map((response: Response) => {
+        return response.json().query.results.channel.item.forecast;
+      })
+      .catch(this.handleError);
+  }
+
+  handleError(error: Response) {
+    return Observable.throw(error.statusText);
   }
 
   getForecastCodes() {
@@ -13,88 +26,7 @@ export class ForecastService {
   }
 }
 
-const FORECAST = [
-  {
-    "code": "28",
-    "date": "16 Mar 2018",
-    "day": "Fri",
-    "high": "34",
-    "low": "28",
-    "text": "Mostly Cloudy"
-  },
-  {
-    "code": "30",
-    "date": "17 Mar 2018",
-    "day": "Sat",
-    "high": "39",
-    "low": "33",
-    "text": "Partly Cloudy"
-  },
-  {
-    "code": "34",
-    "date": "18 Mar 2018",
-    "day": "Sun",
-    "high": "47",
-    "low": "29",
-    "text": "Mostly Sunny"
-  },
-  {
-    "code": "23",
-    "date": "19 Mar 2018",
-    "day": "Mon",
-    "high": "39",
-    "low": "34",
-    "text": "Breezy"
-  },
-  {
-    "code": "23",
-    "date": "20 Mar 2018",
-    "day": "Tue",
-    "high": "35",
-    "low": "29",
-    "text": "Breezy"
-  },
-  {
-    "code": "23",
-    "date": "21 Mar 2018",
-    "day": "Wed",
-    "high": "34",
-    "low": "30",
-    "text": "Breezy"
-  },
-  {
-    "code": "30",
-    "date": "22 Mar 2018",
-    "day": "Thu",
-    "high": "37",
-    "low": "29",
-    "text": "Partly Cloudy"
-  },
-  {
-    "code": "30",
-    "date": "23 Mar 2018",
-    "day": "Fri",
-    "high": "43",
-    "low": "31",
-    "text": "Partly Cloudy"
-  },
-  {
-    "code": "12",
-    "date": "24 Mar 2018",
-    "day": "Sat",
-    "high": "46",
-    "low": "37",
-    "text": "Rain"
-  },
-  {
-    "code": "24",
-    "date": "25 Mar 2018",
-    "day": "Sun",
-    "high": "46",
-    "low": "38",
-    "text": "Windy"
-  }
-];
+const YAHOO_WEATHER_API_URL = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20%28select%20woeid%20from%20geo.places%281%29%20where%20text%3D%22Chicago%22%29&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
 
 const FORECAST_CODES = {
   "0": "tornado",
