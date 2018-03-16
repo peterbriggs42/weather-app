@@ -7,6 +7,10 @@ export class ForecastService {
   getForecast() {
     return FORECAST;
   }
+
+  getForecastCodes() {
+    return FORECAST_CODES;
+  }
 }
 
 const FORECAST = [
