@@ -1,3 +1,21 @@
 .forecast-day:hover {
   box-shadow: 0 0 11px rgba(33,33,33,.2); 
 }
+
+.card-body {
+  padding: 0.5rem 1.25rem;
+}
+
+.weather-alert {
+  padding: 5px;
+
+}
+.weather-alert-container {
+  padding: 5px;
+  
+}
+.weather-alert-container-hover {
+  padding: 5px;
+  background-color: rgba(255, 66, 56, 0.76);
+  box-shadow: 0 0 3px rgba(255, 66, 56, 0.76); 
+}
