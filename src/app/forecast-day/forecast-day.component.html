@@ -7,7 +7,6 @@
       <span class="text-dark">{{day.date | date: 'EEEE'}}</span>
     </h5>
     <div class="card-text mb-1 text-muted">{{day.date | date: 'longDate'}}</div>
-    <!--TODO grab the unit from query > results > channel > units > temperature -->
     <p class="card-text mb-auto">
       <span [class]="isTemperatureAlert(day.high) + ' no-wrap'">High: {{day.high}}&deg;F</span>, 
       <span [class]="isTemperatureAlert(day.low) + ' no-wrap'">Low: {{day.low}}&deg;F</span>
@@ -19,13 +18,3 @@
     </div> 
   </span>
 </div>
-
-
-<!--
-  Previous orientation of card header:
-  <div class="card-body d-flex flex-column align-items-start">
-    <span class="d-inline-block mb-2">
-      <strong class="text-primary">{{day.text}}</strong>
-      <i [class]="getWeatherIcon(day.code)"></i>
-    </span>
-   -->

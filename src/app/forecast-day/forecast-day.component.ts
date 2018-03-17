@@ -92,14 +92,4 @@ export class ForecastDayComponent implements OnInit {
       this.isAlertWeather = (iconClass != '');
       return iconClass;
   }
-
-}
-
-export class Day {
-  code: string;
-  date: string;
-  day: string;
-  high: number;
-  low: number;
-  text: string;
 }
