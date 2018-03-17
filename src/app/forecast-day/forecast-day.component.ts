@@ -20,8 +20,30 @@ export class ForecastDayComponent implements OnInit {
     if (!this.isAlertWeather) {
       return;
     }
-    console.log('hey event: ' + $event);
     this.alertColorClass = ($event.type == 'mouseover') ? 'weather-alert-container-hover' : 'weather-alert-container'; //rgba(255, 66, 56, 0.76)
+  }
+
+  isColdAlert() {
+    let low = Number.parseInt(this.day.low, 10);
+    let coldAlertClass = '';
+    if (low && low < 32) {
+      coldAlertClass = 'cold-alert';
+    } 
+    return coldAlertClass;
+  }
+
+  isTemperatureAlert(temperatureStr) {
+    let temperature = Number.parseInt(temperatureStr);
+    let temperatureAlertClass = '';
+    if (temperature) {
+      if (temperature > 85) {
+        temperatureAlertClass = 'heat-alert'
+      }
+      else if (temperature < 32) {
+        temperatureAlertClass = 'cold-alert';
+      }
+    }
+    return temperatureAlertClass;
   }
 
   getWeatherIcon(code) {
@@ -40,7 +62,6 @@ export class ForecastDayComponent implements OnInit {
       case "17":
       case "35":
       case "40":
-        console.log('showers');
         iconClass = 'wi wi-showers';
         break;
       case "1":
@@ -52,7 +73,6 @@ export class ForecastDayComponent implements OnInit {
       case "39":
       case "45":
       case "47":
-        console.log('thunderstorm');
         iconClass = 'wi wi-thunderstorm';
         break;
       case "13":
@@ -63,14 +83,12 @@ export class ForecastDayComponent implements OnInit {
       case "42":
       case "43":
       case "46":
-      console.log('snow');
         iconClass = 'wi wi-snow'
         break;
       default:
         iconClass = '';
         break;
     }
-      console.log('iconClass:' + iconClass);
       this.isAlertWeather = (iconClass != '');
       return iconClass;
   }

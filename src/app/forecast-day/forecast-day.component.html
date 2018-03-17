@@ -3,12 +3,15 @@
     <span class="mb-2">
       <strong class="text-primary">{{day.text}}</strong>
     </span>
-    <h3 class="mb-0">
+    <h5 class="mb-0">
       <span class="text-dark">{{day.date | date: 'EEEE'}}</span>
-    </h3>
-    <div class="mb-1 text-muted">{{day.date | date: 'longDate'}}</div>
+    </h5>
+    <div class="card-text mb-1 text-muted">{{day.date | date: 'longDate'}}</div>
     <!--TODO grab the unit from query > results > channel > units > temperature -->
-    <p class="card-text mb-auto">High: {{day.high}}&deg;F, Low: {{day.low}}&deg;F</p>
+    <p class="card-text mb-auto">
+      <span [class]="isTemperatureAlert(day.high) + ' no-wrap'">High: {{day.high}}&deg;F</span>, 
+      <span [class]="isTemperatureAlert(day.low) + ' no-wrap'">Low: {{day.low}}&deg;F</span>
+    </p>
   </div>
   <span class="float-right" >
     <div [ngClass]="alertColorClass">

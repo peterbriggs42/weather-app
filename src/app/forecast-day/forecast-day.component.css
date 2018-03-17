@@ -6,6 +6,10 @@
   padding: 0.5rem 1.25rem;
 }
 
+.card-text {
+  font-size: .9rem;
+}
+
 .weather-alert {
   padding: 5px;
 
@@ -18,4 +22,16 @@
   padding: 5px;
   background-color: rgba(255, 66, 56, 0.76);
   box-shadow: 0 0 3px rgba(255, 66, 56, 0.76); 
+}
+
+.cold-alert {
+  background-color: #7FDBFF;
+}
+
+.heat-alert {
+  background-color: #FF851B;
+}
+
+.no-wrap {
+  white-space: nowrap;
 }
